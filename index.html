@@ -2,14 +2,144 @@
 <html>
 
 <head>
+  <meta charset="utf-8">
+  <meta content="initial-scale=1, minimum-scale=1, width=device-width" name="viewport">
+
   <title>Find a Supplier - Givas</title>
 
-  <script src="https://unpkg.com/material-components-web@7.0.0/dist/material-components-web.min.css"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons">
+  <link rel="stylesheet" href="https://arbynacosta.github.io/css/fonts.css">
+
+  <style>
+    *,
+    *:after,
+    *:before {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #fff;
+      color: #202124;
+      font-family: "Google Sans", sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: .2px;
+      line-height: 18px;
+    }
+
+    main {
+      padding: 24px;
+    }
+
+    .app-title,
+    .app-input__label {
+      -webkit-font-smoothing: antialiased;
+      display: block;
+      font-family: Google Sans,Roboto,Arial,Helvetica,sans-serif;
+      font-size: 32px;
+      letter-spacing: -.17px;
+      line-height: 41px;
+      margin: 0;
+      text-rendering: optimizeLegibility;
+    }
+
+    .app-title {
+      font-weight: 400;
+    }
+
+    .app-input__label,
+    .app-supplier-count-output {
+      font-weight: 500;
+      font-size: 16px;
+      margin-top: 40px;
+    }
+
+    .app-input {
+      position: relative;
+    }
+
+    .app-input > input {
+      -webkit-appearance: none;
+      -webkit-box-shadow: 0 2px 4px rgba(0,0,0,.11);
+      -webkit-font-smoothing: antialiased;
+      -webkit-transition: border-color .15s;
+      background: inherit;
+      border-bottom: 1px solid #9aa0a6;
+      border-radius: 4px;
+      border: 1px solid #dadce0;
+      box-shadow: 0 2px 4px rgba(0,0,0,.11);
+      color: #3c4043;
+      font-family: "Google Sans",Roboto,Arial,Helvetica,sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20px;
+      padding: 14px 15px;
+      transition: border-color .15s;
+      width: 100%;
+    }
+
+    .app-input > input:active,
+    .app-input > input:focus {
+      outline: none;
+    }
+
+    .app-input--has-icon input {
+      padding-left: 43px;
+    }
+
+    .app-input--has-icon svg {
+      position: absolute;
+      left: 11px;
+      bottom: 11px;
+      fill: #666666;
+    }
+
+    .app-output {
+      margin-top: 40px;
+    }
+
+    .app-output svg {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .app-supplier-count-output {
+      margin: 0;
+      margin-left: 8px;
+      display: inline-block;
+      vertical-align: -1px;
+    }
+
+    .supplier-count {
+      color: #40a744;
+    }
+  </style>
 </head>
 
 <body>
-  <h1>Hello, World</h1>
-  <script src="https://unpkg.com/material-components-web@7.0.0/dist/material-components-web.min.js"></script>
+  <main class="main">
+    <header>
+      <h1 class="app-title">Find your next supplier at Givas.</h1>
+    </header>
+
+    <div class="app-input" id="supply-input">
+      <span class="app-input__label">What supplies are you looking for?</span>
+      <input type="text" placeholder="Construction materials, whole foods, office supplies, etc.">
+    </div>
+
+    <div class="app-input app-input--has-icon" id="location-input">
+      <span class="app-input__label">Where do you want your supplies delivered?</span>
+      <svg width="26" height="26" viewBox="0 0 26 26" role="presentation" xmlns="http://www.w3.org/2000/svg" class="gc-location-field__icon gc-icon"><g data-v-f428d9e4=""><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path> <path d="M0 0h24v24H0z" fill="none"></path></g></svg>
+      <input type="text" placeholder="Caloocan City">
+    </div>
+
+    <div class="app-output">
+      <svg width="20" height="20" viewBox="0 0 20 20" role="presentation" xmlns="http://www.w3.org/2000/svg" class="gc-icon"><path d="M9 15h2V9H9v6zm1-15C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM9 7h2V5H9v2z" fill-rule="nonzero"></path></svg>
+      <h3 class="app-supplier-count-output"><span class="supplier-count">1</span> Supplier matched</h3>
+    </div>
+  </main>
 </body>
 
 </html>
