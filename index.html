@@ -7,7 +7,7 @@
 
   <title>Find a Supplier - Givas</title>
 
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400|Material+Icons">
   <link rel="stylesheet" href="https://arbynacosta.github.io/css/fonts.css">
 
   <style>
@@ -27,10 +27,11 @@
       font-weight: 400;
       letter-spacing: .2px;
       line-height: 18px;
+      margin: 0;
     }
 
     main {
-      padding: 24px;
+      padding: 36px 36px 18px;
     }
 
     .app-title,
@@ -47,13 +48,14 @@
 
     .app-title {
       font-weight: 400;
+      display: block;
     }
 
     .app-input__label,
     .app-supplier-count-output {
       font-weight: 500;
       font-size: 16px;
-      margin-top: 40px;
+      margin-top: 36px;
     }
 
     .app-input {
@@ -89,31 +91,90 @@
       padding-left: 43px;
     }
 
-    .app-input--has-icon svg {
+    .app-input--has-icon > svg {
       position: absolute;
       left: 11px;
-      bottom: 11px;
-      fill: #666666;
+      top: 54px;
+      fill: #b9b9b9;
     }
 
     .app-output {
-      margin-top: 40px;
+      font-family: Roboto, sans-serif;
+      margin-top: 30px;
     }
 
-    .app-output svg {
+    .app-output > svg {
+      fill: #6b6b6b;
       display: inline-block;
       vertical-align: middle;
     }
 
     .app-supplier-count-output {
+      font-size: 14px;
       margin: 0;
-      margin-left: 8px;
+      margin-left: 6px;
       display: inline-block;
       vertical-align: -1px;
+      color: #6b6b6b;
     }
 
     .supplier-count {
       color: #40a744;
+    }
+
+    #contact-supplier {
+      -webkit-appearance: none;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      display: inline-block;
+      font-family: Google Sans,Roboto,Arial,Helvetica,sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.15;
+      -webkit-tap-highlight-color: transparent;
+      text-align: center;
+      text-decoration: none;
+      -webkit-transition: background .15s,color .15s;
+      transition: background .15s,color .15s;
+      border-radius: 4px;
+      font-size: 14px;
+      letter-spacing: .25px;
+      padding: 10px 36px;
+      background: #1967d2;
+      color: #fff;
+      -webkit-font-smoothing: antialiased;
+      min-width: 126px;
+      margin-top: 12px;
+    }
+
+    .dots {
+      display: block;
+      position: relative;
+      margin-bottom: 36px;
+    }
+
+    .dots .dot {
+      background-color: #6b6b6b;
+      display: inline-block;
+      height: 12px;
+      width: 12px;
+      border-radius: 6px;
+      margin-right: 30px;
+    }
+
+    body > footer {
+      color: #cacaca;
+      display: block;
+      position: absolute;
+      bottom: 0;
+      padding: 18px 36px 36px;
+      width: 100%;
+      height: 70px;
+    }
+
+    footer > span {
+      font-family: Roboto, sans-serif;
     }
   </style>
 </head>
@@ -121,6 +182,12 @@
 <body>
   <main class="main">
     <header>
+      <div class="dots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+
       <h1 class="app-title">Find your next supplier at Givas.</h1>
     </header>
 
@@ -130,16 +197,22 @@
     </div>
 
     <div class="app-input app-input--has-icon" id="location-input">
-      <span class="app-input__label">Where do you want your supplies delivered?</span>
+      <span class="app-input__label">Where do you need your supplies?</span>
       <svg width="26" height="26" viewBox="0 0 26 26" role="presentation" xmlns="http://www.w3.org/2000/svg" class="gc-location-field__icon gc-icon"><g data-v-f428d9e4=""><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path> <path d="M0 0h24v24H0z" fill="none"></path></g></svg>
       <input type="text" placeholder="Caloocan City">
     </div>
 
     <div class="app-output">
       <svg width="20" height="20" viewBox="0 0 20 20" role="presentation" xmlns="http://www.w3.org/2000/svg" class="gc-icon"><path d="M9 15h2V9H9v6zm1-15C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM9 7h2V5H9v2z" fill-rule="nonzero"></path></svg>
-      <h3 class="app-supplier-count-output"><span class="supplier-count">1</span> Supplier matched</h3>
+      <h3 class="app-supplier-count-output"><span class="supplier-count">3</span> Suppliers matched</h3>
     </div>
+
+    <button role="button" id="contact-supplier">Contact Supplier<span>s</span></button>
   </main>
+
+  <footer>
+    <span class="copyright">&copy;</span> <strong>Givas</strong>. All rights reserved.
+  </footer>
 </body>
 
 </html>
