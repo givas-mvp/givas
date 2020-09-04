@@ -27,11 +27,8 @@
       font-weight: 400;
       letter-spacing: .2px;
       line-height: 18px;
+      position: relative;
       margin: 0;
-    }
-
-    main {
-      padding: 36px;
     }
 
     .app-title,
@@ -54,8 +51,8 @@
     .app-input__label,
     .app-supplier-count-output {
       font-weight: 500;
-      font-size: 16px;
-      margin-top: 36px;
+      font-size: 14px;
+      margin-top: 24px;
     }
 
     .app-input {
@@ -98,12 +95,12 @@
       fill: #b9b9b9;
     }
 
-    .app-output {
+    #app-output {
       font-family: Roboto, sans-serif;
       margin-top: 30px;
     }
 
-    .app-output > svg {
+    #app-output > svg {
       fill: #6b6b6b;
       display: inline-block;
       vertical-align: middle;
@@ -118,7 +115,7 @@
       color: #6b6b6b;
     }
 
-    .supplier-count {
+    #supplier-count {
       color: #40a744;
     }
 
@@ -151,7 +148,7 @@
     .dots {
       display: block;
       position: relative;
-      margin-bottom: 36px;
+      margin-bottom: 16px;
     }
 
     .dots .dot {
@@ -163,52 +160,269 @@
       margin-right: 30px;
     }
 
+    .dot.on {
+      background-color: #4285f4;
+    }
+
+    .dot.on:nth-child(2) {
+      background-color: #fbbc04;
+    }
+
+    .dot.on:nth-child(3) {
+      background-color: #40a744;
+    }
+
+    main {
+      padding: 24px;
+      position: relative;
+    }
+
     body > footer {
       color: #cacaca;
       display: block;
-      width: 100%;
-      padding: 18px 36px 36px;
+      width: auto;
+      margin: 0 24px;
+      padding: 0 0 24px;
     }
 
     footer > span {
       font-family: Roboto, sans-serif;
     }
+
+    @media screen and (min-width: 281px) {
+
+      .app-input__label,
+      .app-supplier-count-output {
+        font-size: 16px;
+      }
+
+    }
+
+    @media screen and (min-width: 359px) {
+
+      main {
+        padding: 36px;
+      }
+
+      .dots {
+        margin-bottom: 24px;
+      }
+
+      .app-input__label,
+      .app-supplier-count-output {
+        margin-top: 36px;
+      }
+
+      body > footer {
+        margin: 0 36px;
+        padding: 0 0 36px;
+      }
+
+    }
+
+    @media screen and (min-width: 399px) {
+
+      .app-input__label {
+        font-size: 18px;
+      }
+
+      .app-supplier-count-output,
+      #contact-supplier {
+        font-size: 16px;
+      }
+
+      .app-supplier-count-output {
+        vertical-align: -2px;
+      }
+
+      body > footer {
+        padding-top: 24px;
+      }
+    }
+
+    @media screen and (min-width: 767px) {
+
+      main {
+        padding: 60px;
+      }
+
+      .dots {
+        margin-bottom: 60px;
+        margin-top: 12px;
+      }
+
+      .app-input__label {
+        font-size: 30px;
+        margin-top: 0;
+      }
+
+      .app-input {
+        margin-top: 32px;
+      }
+
+      .app-input:first-of-type {
+        margin-top: 0;
+      }
+
+      .app-input input {
+        margin-top: 32px;
+      }
+
+      .app-input--has-icon > svg {
+        top: 85px;
+      }
+
+      body > footer {
+        color: #aaa;
+        border-top: 1px solid #ddd;
+        margin-left: 60px;
+        margin-right: 60px;
+        margin-top: 16px;
+        padding-top: 16px;
+      }
+
+    }
+
+    @media screen and (min-width: 1279px) {
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body > footer {
+        height: 83px;
+        margin: 0;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding-left: 135px;
+        padding-top: 35px;
+        line-height: 15px;
+        border: 0;
+        background-color: #f8f9fa;
+        color: #80868b;
+      }
+
+      body > footer strong {
+        position: absolute;
+        left: 60px;
+        font-size: 1.5rem;
+        font-weight: 500;
+        letter-spacing: -0.3px;
+        line-height: 10px;
+        color: #5f6368;
+      }
+
+      body > footer .hideable {
+        display: none;
+        visibility: hidden;
+      }
+
+    }
+
+    @media screen and (min-width: 1279px) {
+
+      main {
+        max-width: 50%;
+      }
+
+      #contact-supplier {
+        margin-top: 60px;
+      }
+
+      #app-output {
+        position: fixed;
+        margin: 0;
+        right: calc(25% + 30px);
+        height: 300px;
+        top: 280px;
+        margin-top: -150px;
+        margin-right: -250px;
+        width: 500px;
+        text-align: center;
+        padding-top: 200px;
+      }
+
+      .app-supplier-count-output {
+        font-size: 21px;
+        margin: 0;
+        vertical-align: -4px;
+      }
+
+      #supplier-count {
+        font-family: "Google Sans", sans-serif;
+        font-size: 200px;
+        position: absolute;
+        font-weight: 400;
+        display: block;
+        top: 90px;
+        left: 0;
+        text-align: center;
+        width: 100%;
+        overflow: visible;
+      }
+
+    }
+
+    @media screen and (min-width: 1365px) {
+
+      .app-input__label {
+        font-size: 32px;
+      }
+
+    }
+
+    @media screen and (min-width: 1400px) {
+
+      .wrapper {
+        margin: 0 auto;
+        padding-top: 60px;
+        max-width: 1366px;
+        min-height: calc(100% - 83px);
+        display: block;
+      }
+
+    }
+
   </style>
 </head>
 
 <body>
-  <main class="main">
-    <header>
-      <div class="dots">
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
+  <div class="wrapper">
+    <main class="main">
+      <header>
+        <div class="dots">
+          <span class="dot on"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+
+        <h1 class="app-title">Find your next supplier at Givas.</h1>
+      </header>
+
+      <div class="app-input" id="supply-input">
+        <span class="app-input__label">What supplies are you looking for?</span>
+        <input type="text" placeholder="Construction materials, whole foods, office supplies, etc.">
       </div>
 
-      <h1 class="app-title">Find your next supplier at Givas.</h1>
-    </header>
+      <div class="app-input app-input--has-icon" id="location-input">
+        <span class="app-input__label">Where do you need your supplies?</span>
+        <svg width="26" height="26" viewBox="0 0 26 26" role="presentation" xmlns="http://www.w3.org/2000/svg" class="gc-location-field__icon gc-icon"><g data-v-f428d9e4=""><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path> <path d="M0 0h24v24H0z" fill="none"></path></g></svg>
+        <input type="text" placeholder="Caloocan City">
+      </div>
 
-    <div class="app-input" id="supply-input">
-      <span class="app-input__label">What supplies are you looking for?</span>
-      <input type="text" placeholder="Construction materials, whole foods, office supplies, etc.">
-    </div>
+      <div id="app-output">
+        <svg width="20" height="20" viewBox="0 0 20 20" role="presentation" xmlns="http://www.w3.org/2000/svg" class="gc-icon"><path d="M9 15h2V9H9v6zm1-15C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM9 7h2V5H9v2z" fill-rule="nonzero"></path></svg>
+        <h3 class="app-supplier-count-output"><span id="supplier-count">3</span> Suppliers matched</h3>
+      </div>
 
-    <div class="app-input app-input--has-icon" id="location-input">
-      <span class="app-input__label">Where do you need your supplies?</span>
-      <svg width="26" height="26" viewBox="0 0 26 26" role="presentation" xmlns="http://www.w3.org/2000/svg" class="gc-location-field__icon gc-icon"><g data-v-f428d9e4=""><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path> <path d="M0 0h24v24H0z" fill="none"></path></g></svg>
-      <input type="text" placeholder="Caloocan City">
-    </div>
-
-    <div class="app-output">
-      <svg width="20" height="20" viewBox="0 0 20 20" role="presentation" xmlns="http://www.w3.org/2000/svg" class="gc-icon"><path d="M9 15h2V9H9v6zm1-15C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM9 7h2V5H9v2z" fill-rule="nonzero"></path></svg>
-      <h3 class="app-supplier-count-output"><span class="supplier-count">3</span> Suppliers matched</h3>
-    </div>
-
-    <button role="button" id="contact-supplier">Contact Supplier<span>s</span></button>
-  </main>
+      <button role="button" id="contact-supplier">Contact Supplier<span>s</span></button>
+    </main>
+  </div>
 
   <footer>
-    <span class="copyright">&copy;</span> <strong>Givas</strong>. All rights reserved.
+    <span class="copyright">&copy;</span> 2020<span class="hideable"> </span><strong>Givas</strong>. All rights reserved.
   </footer>
 </body>
 
