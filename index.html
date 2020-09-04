@@ -49,7 +49,8 @@
     }
 
     .app-input__label,
-    .app-supplier-count-output {
+    #app-results__supplier-count,
+    #app-results__static-text {
       font-weight: 500;
       font-size: 14px;
       margin-top: 24px;
@@ -95,18 +96,18 @@
       fill: #b9b9b9;
     }
 
-    #app-output {
+    #app-results {
       font-family: Roboto, sans-serif;
-      margin-top: 30px;
     }
 
-    #app-output > svg {
+    #app-results__info-icon {
       fill: #6b6b6b;
       display: inline-block;
       vertical-align: middle;
     }
 
-    .app-supplier-count-output {
+    #app-results__supplier-count,
+    #app-results__static-text {
       font-size: 14px;
       margin: 0;
       margin-left: 6px;
@@ -115,7 +116,7 @@
       color: #6b6b6b;
     }
 
-    #supplier-count {
+    #app-results__supplier-count {
       color: #40a744;
     }
 
@@ -192,7 +193,8 @@
     @media screen and (min-width: 310px) {
 
       .app-input__label,
-      .app-supplier-count-output {
+      #app-results__supplier-count,
+      #app-results__static-text {
         font-size: 16px;
       }
 
@@ -209,7 +211,8 @@
       }
 
       .app-input__label,
-      .app-supplier-count-output {
+      #app-results__supplier-count,
+      #app-results__static-text {
         margin-top: 36px;
       }
 
@@ -226,12 +229,14 @@
         font-size: 18px;
       }
 
-      .app-supplier-count-output,
+      #app-results__supplier-count,
+      #app-results__static-text,
       #contact-supplier {
         font-size: 16px;
       }
 
-      .app-supplier-count-output {
+      #app-results__supplier-count,
+      #app-results__static-text {
         vertical-align: -2px;
       }
 
@@ -283,11 +288,12 @@
 
     }
 
-    @media screen and (min-width: 1279px) {
+    @media screen and (min-width: 1151px) {
 
       html,
       body {
         height: 100%;
+        min-height: 920px;
       }
 
       body > footer {
@@ -319,48 +325,58 @@
         visibility: hidden;
       }
 
-    }
+      .row {
+        overflow: auto;
+        position: relative;
+        width: 100%;
+      }
 
-    @media screen and (min-width: 1279px) {
+      .row:after {
+        content: "";
+        clear: both;
+        display: table;
+      }
 
-      main {
-        max-width: 50%;
+      .column-6,
+      .column-12 {
+        float: left;
+        padding: 5px;
+      }
+
+      .column-6 {
+        width: 50%;
+      }
+
+      .column-12 {
+        width: 100%;
+      }
+
+      #app-results__info-icon {
+        display: none;
+        visibility: hidden;
       }
 
       #contact-supplier {
         margin-top: 60px;
       }
 
-      #app-output {
-        position: fixed;
-        margin: 0;
-        right: calc(25% + 30px);
-        height: 300px;
-        top: 280px;
-        margin-top: -150px;
-        margin-right: -250px;
-        width: 500px;
+      #app-results {
         text-align: center;
-        padding-top: 200px;
       }
 
-      .app-supplier-count-output {
+      #app-results__supplier-count,
+      #app-results__static-text {
         font-size: 21px;
+        line-height: 24px;
         margin: 0;
-        vertical-align: -4px;
+        display: block;
       }
 
-      #supplier-count {
+      #app-results__supplier-count {
         font-family: "Google Sans", sans-serif;
         font-size: 200px;
-        position: absolute;
         font-weight: 400;
-        display: block;
-        top: 90px;
-        left: 0;
-        text-align: center;
-        width: 100%;
-        overflow: visible;
+        line-height: 204px;
       }
 
     }
@@ -375,17 +391,16 @@
 
     @media screen and (min-width: 1400px) {
 
-      .wrapper {
+      .main {
         margin: 0 auto;
-        padding-top: 60px;
         max-width: 1280px;
         min-height: calc(100% - 83px);
         display: block;
       }
 
-      #app-output {
+      #app-results {
         right: calc(30% + 30px);
-        top: 340px;
+        top: 300px;
       }
 
     }
@@ -394,37 +409,55 @@
 </head>
 
 <body>
-  <div class="wrapper">
-    <main class="main">
-      <header>
+  <main class="main">
+    <div class="row">
+      <div class="column-6" id="app-inputs">
         <div class="dots">
           <span class="dot on"></span>
           <span class="dot"></span>
           <span class="dot"></span>
         </div>
+      </div>
+    </div>
 
+    <div class="row">
+      <div class="column-6" id="app-inputs">
         <h1 class="app-title">Find your next supplier at Givas.</h1>
-      </header>
 
-      <div class="app-input" id="supply-input">
-        <span class="app-input__label">What supplies are you looking for?</span>
-        <input type="text" placeholder="Construction materials, whole foods, office supplies, etc.">
+        <div class="app-input" id="supply-input">
+          <span class="app-input__label">What supplies are you looking for?</span>
+          <input type="text" placeholder="Construction materials, whole foods, office supplies, etc.">
+        </div>
+
+        <div class="app-input app-input--has-icon" id="location-input">
+          <span class="app-input__label">Where do you need your supplies?</span>
+          <svg width="26" height="26" viewBox="0 0 26 26" role="presentation" xmlns="http://www.w3.org/2000/svg" class="gc-location-field__icon gc-icon"><g data-v-f428d9e4=""><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path> <path d="M0 0h24v24H0z" fill="none"></path></g></svg>
+          <input type="text" placeholder="Caloocan City">
+        </div>
+
+        <div class="app-input" id="date-input">
+          <span class="app-input__label">When do you need your supplies?</span>
+          <input type="date" placeholder="MM/DD/YYYY">
+        </div>
       </div>
 
-      <div class="app-input app-input--has-icon" id="location-input">
-        <span class="app-input__label">Where do you need your supplies?</span>
-        <svg width="26" height="26" viewBox="0 0 26 26" role="presentation" xmlns="http://www.w3.org/2000/svg" class="gc-location-field__icon gc-icon"><g data-v-f428d9e4=""><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path> <path d="M0 0h24v24H0z" fill="none"></path></g></svg>
-        <input type="text" placeholder="Caloocan City">
-      </div>
+      <div class="column-6" id="app-results">
+        <div id="app-results__info-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" role="presentation" xmlns="http://www.w3.org/2000/svg" class="gc-icon"><path d="M9 15h2V9H9v6zm1-15C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM9 7h2V5H9v2z" fill-rule="nonzero"></path></svg>
+        </div>
 
-      <div id="app-output">
-        <svg width="20" height="20" viewBox="0 0 20 20" role="presentation" xmlns="http://www.w3.org/2000/svg" class="gc-icon"><path d="M9 15h2V9H9v6zm1-15C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM9 7h2V5H9v2z" fill-rule="nonzero"></path></svg>
-        <h3 class="app-supplier-count-output"><span id="supplier-count">3</span> Suppliers matched</h3>
-      </div>
+        <div id="app-results__supplier-count">3</div>
 
-      <button role="button" id="contact-supplier">Contact Supplier<span>s</span></button>
-    </main>
-  </div>
+        <div id="app-results__static-text">Suppliers matched</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="column-12">
+        <button role="button" id="contact-supplier">Contact Suppliers</button>
+      </div>
+    </div>
+  </main>
 
   <footer>
     <span class="copyright">&copy;</span> 2020<span class="hideable"> </span><strong>Givas</strong>. All rights reserved.
