@@ -687,94 +687,30 @@
         return;
       }
 
-      var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://rapidprod-sendgrid-v1.p.rapidapi.com/mail/send",
-        "method": "POST",
-        "headers": {
-          "x-rapidapi-host": "rapidprod-sendgrid-v1.p.rapidapi.com",
-          "x-rapidapi-key": "f3241b21c5mshe69a6a0dab5aab5p13df9cjsnd698c218133d",
-          "Access-Control-Allow-Origin":"*",
-          "content-type": "application/json",
-          "accept": "application/json"
-        },
-        "processData": false,
-        "data": JSON.stringify({
-          "personalizations": [
-            {
-              "to": [
-                {
-                  "email": "arbyn.acosta@gmail.com"
-                }
-              ],
-              "subject": `[Givas] ${currentUser} - Initial Page`
-            }
-          ],
-          "from": {
-            "email": "bot@givas.com"
-          },
-          "content": [
-            {
-              "type": "text/plain",
-              "value": `${$_supply.val()}\n${$_location.val()}\n${$_date.val()}`
-            }
-          ]
-        })
-      }
+      gtag('event', 'form_submit', {
+        'send_to': 'UA-39698004-2',
+        'event_label': `${currentUser} --- ${$_supply.val()} --- ${$_location.val()} --- ${$_date.val()}`,
+        'event_category': 'supply_form',
+        'value': 2
+      });
 
       $('#page-1').hide();
       $('#page-2').show();
-
-      $.ajax(settings).done(function (response) {
-      });
     });
 
     $_sendEmailButton.on('click', function() {
       $_this = $(this);
 
-      var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://rapidprod-sendgrid-v1.p.rapidapi.com/mail/send",
-        "method": "POST",
-        "headers": {
-          "x-rapidapi-host": "rapidprod-sendgrid-v1.p.rapidapi.com",
-          "x-rapidapi-key": "f3241b21c5mshe69a6a0dab5aab5p13df9cjsnd698c218133d",
-          "Access-Control-Allow-Origin":"*",
-          "content-type": "application/json",
-          "accept": "application/json"
-        },
-        "processData": false,
-        "data": JSON.stringify({
-          "personalizations": [
-            {
-              "to": [
-                {
-                  "email": "arbyn.acosta@gmail.com"
-                }
-              ],
-              "subject": `[Givas] ${currentUser} - Email Page`
-            }
-          ],
-          "from": {
-            "email": "bot@givas.com"
-          },
-          "content": [
-            {
-              "type": "text/plain",
-              "value": `${$_email.val()}`
-            }
-          ]
-        })
-      }
+      gtag('event', 'form_submit', {
+        'send_to': 'UA-39698004-2',
+        'event_label': `${currentUser} --- ${$_email.val()}`,
+        'event_category': 'subscribe_form',
+        'value': 2
+      });
 
       $_this.hide();
       $_email.hide();
       $_thankUserButton.show();
-
-      $.ajax(settings).done(function (response) {
-      });
     });
   </script>
 </body>
