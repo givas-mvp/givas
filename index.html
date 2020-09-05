@@ -601,16 +601,19 @@
         return;
       }
 
-      fetch("https://rapidprod-sendgrid-v1.p.rapidapi.com/mail/send", {
+      var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://rapidprod-sendgrid-v1.p.rapidapi.com/mail/send",
         "method": "POST",
-        "mode": 'no-cors',
         "headers": {
           "x-rapidapi-host": "rapidprod-sendgrid-v1.p.rapidapi.com",
           "x-rapidapi-key": "f3241b21c5mshe69a6a0dab5aab5p13df9cjsnd698c218133d",
           "content-type": "application/json",
           "accept": "application/json"
         },
-        "body": {
+        "processData": false,
+        "data": JSON.stringify({
           "personalizations": [
             {
               "to": [
@@ -630,13 +633,11 @@
               "value": `${$_supply.val()}\n${$_location.val()}\n${$_date.val()}`
             }
           ]
-        }
-      })
-      .then(response => {
+        })
+      }
+
+      $.ajax(settings).done(function (response) {
         console.debug(response);
-      })
-      .catch(err => {
-        console.debug(err);
       });
     });
   </script>
