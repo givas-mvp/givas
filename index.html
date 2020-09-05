@@ -53,7 +53,7 @@
     #app-results__static-text {
       font-weight: 500;
       font-size: 14px;
-      margin-top: 24px;
+      margin-top: 16px;
     }
 
     .app-input {
@@ -98,6 +98,7 @@
 
     #app-results {
       font-family: Roboto, sans-serif;
+      margin-top: 24px;
     }
 
     #app-results__info-icon {
@@ -214,9 +215,11 @@
         margin-bottom: 24px;
       }
 
-      .app-input__label,
-      #app-results__supplier-count,
-      #app-results__static-text {
+      .app-input__label {
+        margin-top: 24px;
+      }
+
+      #app-results {
         margin-top: 36px;
       }
 
@@ -365,6 +368,9 @@
       }
 
       #app-results {
+        transition: opacity 0.1s ease-in-out;
+        margin-top: 0;
+        opacity: 0;
         text-align: center;
       }
 
@@ -436,7 +442,7 @@
         <div class="app-input app-input--has-icon" id="location-input">
           <span class="app-input__label">Where do you need your supplies?</span>
           <svg width="26" height="26" viewBox="0 0 26 26" role="presentation" xmlns="http://www.w3.org/2000/svg" class="gc-location-field__icon gc-icon"><g data-v-f428d9e4=""><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path> <path d="M0 0h24v24H0z" fill="none"></path></g></svg>
-          <input type="text" placeholder="Caloocan City">
+          <input type="text" placeholder="Caloocan City, Philippines">
         </div>
 
         <div class="app-input" id="date-input">
@@ -515,8 +521,10 @@
         return;
       }
 
+      $('#app-results').css('opacity', '1');
+
       // Create a focuser factor based on number of commas
-      let locationFactor = ($_location.val().trim() == '' ? 1 : (2.0 / 3.0));
+      let locationFactor = ($_location.val().trim() == '' ? 1 : (1.0 / 2.0));
       let dateFactor = ($_date.val().trim() == '' ? 1 : (2.0 / 3.0));
       let focusFactor = (commaCount < 1) ? 1 : commaCount + 1;
 
