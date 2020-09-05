@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400|Material+Icons">
   <link rel="stylesheet" href="https://arbynacosta.github.io/css/fonts.css">
 
+  <script>function u() { return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) { var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8); return v.toString(16); }); } let currentUser = u();</script>
+
   <style>
     *,
     *:after,
@@ -144,10 +146,20 @@
       letter-spacing: -0.2px;
       padding: 10px 36px;
       background: #1967d2;
+      outline: 0;
       color: #fff;
       -webkit-font-smoothing: antialiased;
       min-width: 126px;
       margin-top: 12px;
+    }
+
+    #contact-supplier:hover {
+      background: #185abc;
+      color: #fff;
+    }
+
+    #contact-supplier[disabled] {
+      background-color: #a0a7b0;
     }
 
     .dots {
@@ -430,7 +442,7 @@
 
 <body>
   <div id="diagonal-bg"></div>
-  <main class="main">
+  <main class="main" id="page-1">
     <div class="row">
       <div class="column-6" id="app-inputs">
         <div class="dots">
@@ -475,7 +487,7 @@
 
     <div class="row">
       <div class="column-12">
-        <button role="button" id="contact-supplier">Contact Suppliers</button>
+        <button role="button" id="contact-supplier" disabled>Contact Suppliers</button>
       </div>
     </div>
   </main>
@@ -500,6 +512,8 @@
     var $_location = $('#location-input input');
     var $_date = $('#date-input input');
     var $_count = $('#app-results__supplier-count');
+
+    var $_contactButton = $('#contact-supplier');
 
     // On keyup, start the countdown
     $_input.on('keyup change', function () {
@@ -532,6 +546,7 @@
         return;
       }
 
+      $_contactButton.removeAttr('disabled');
       $('#app-results').css('opacity', '1');
 
       // Create a focuser factor based on number of commas
@@ -577,6 +592,50 @@
         }
       });
     }
+
+    $_contactButton.on('click', function() {
+      $_this = $(this);
+      if ($_this.attr('disabled') == 'disabled') {
+        return;
+      }
+
+      fetch("https://rapidprod-sendgrid-v1.p.rapidapi.com/mail/send", {
+        "method": "POST",
+        "headers": {
+          "x-rapidapi-host": "rapidprod-sendgrid-v1.p.rapidapi.com",
+          "x-rapidapi-key": "f3241b21c5mshe69a6a0dab5aab5p13df9cjsnd698c218133d",
+          "content-type": "application/json",
+          "accept": "application/json"
+        },
+        "body": {
+          "personalizations": [
+            {
+              "to": [
+                {
+                  "email": "arbyn.acosta@gmail.com"
+                }
+              ],
+              "subject": `[Givas] ${currentUser} - Initial Page`
+            }
+          ],
+          "from": {
+            "email": "bot@givas.com"
+          },
+          "content": [
+            {
+              "type": "text/plain",
+              "value": `${$_supply.val()}\n${$_location.val()}\n${$_date.val()}`
+            }
+          ]
+        }
+      })
+      .then(response => {
+        console.debug(response);
+      })
+      .catch(err => {
+        console.debug(err);
+      });
+    });
   </script>
 </body>
 
