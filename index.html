@@ -23,6 +23,10 @@
       box-sizing: border-box;
     }
 
+    html {
+      overflow-y: scroll;
+    }
+
     body {
       color: #202124;
       font-family: "Google Sans", sans-serif;
@@ -128,7 +132,9 @@
       color: #40a744;
     }
 
-    #contact-supplier {
+    #contact-supplier,
+    #send-email,
+    #thank-user {
       -webkit-appearance: none;
       background: transparent;
       border: 0;
@@ -155,12 +161,16 @@
       margin-top: 12px;
     }
 
-    #contact-supplier:hover {
+    #contact-supplier:hover,
+    #send-email:hover,
+    #thank-user:hover {
       background: #185abc;
       color: #fff;
     }
 
-    #contact-supplier[disabled] {
+    #contact-supplier[disabled],
+    #send-email[disabled],
+    #thank-user[disabled] {
       background-color: #a0a7b0;
     }
 
@@ -191,9 +201,15 @@
       background-color: #fbbc04;
     }
 
-    main {
+    .main {
       padding: 24px;
       position: relative;
+    }
+
+    .main p {
+      font-size: 18px;
+      line-height: 24px;
+      color: #80868b;
     }
 
     body > footer {
@@ -208,6 +224,10 @@
       font-family: Roboto, sans-serif;
     }
 
+    #email-input {
+      margin-top: 36px;
+    }
+
     @media screen and (min-width: 310px) {
 
       .app-input__label,
@@ -220,7 +240,7 @@
 
     @media screen and (min-width: 359px) {
 
-      main {
+      .main {
         padding: 36px;
       }
 
@@ -251,7 +271,9 @@
 
       #app-results__supplier-count,
       #app-results__static-text,
-      #contact-supplier {
+      #contact-supplier,
+      #send-email,
+      #thank-user {
         font-size: 16px;
       }
 
@@ -267,7 +289,7 @@
 
     @media screen and (min-width: 767px) {
 
-      main {
+      .main {
         padding: 60px;
       }
 
@@ -376,7 +398,8 @@
         visibility: hidden;
       }
 
-      #contact-supplier {
+      #contact-supplier,
+      #thank-user {
         margin-top: 60px;
       }
 
@@ -439,6 +462,10 @@
       top: 0;
       left: 0;
     }
+
+    #thank-user {
+      margin-top: 32px;
+    }
   </style>
 </head>
 
@@ -446,7 +473,7 @@
   <div id="diagonal-bg"></div>
   <main class="main" id="page-1">
     <div class="row">
-      <div class="column-6" id="app-inputs">
+      <div class="column-12" id="app-inputs">
         <div class="dots">
           <span class="dot on"></span>
           <span class="dot"></span>
@@ -494,6 +521,39 @@
     </div>
   </main>
 
+  <div class="main" id="page-2" style="display: none;">
+    <div class="row">
+      <div class="column-12" id="app-inputs">
+        <div class="dots">
+          <span class="dot on"></span>
+          <span class="dot on"></span>
+          <span class="dot on"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="column-6" id="app-inputs">
+        <h1 class="app-title">Hi! You caught us before Givas is ready.</h1>
+
+        <div class="app-input">
+          <p>We're working hard to put the finishing touches onto Givas. Things are going well and it should be ready to help you with your supply needs. If you'd like us to send you a reminder when we're ready, just put your email in below:</p>
+        </div>
+
+        <div class="app-input" id="email-input">
+          <input type="text" placeholder="Your email">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="column-12">
+        <button role="button" id="send-email">Remind me</button>
+        <button role="button" id="thank-user" style="display: none;" disabled>Thank you for your patience</button>
+      </div>
+    </div>
+  </div>
+
   <footer>
     <span class="copyright">&copy;</span> 2020<span class="hideable"> </span><strong>Givas</strong>. All rights reserved.
   </footer>
@@ -514,8 +574,11 @@
     var $_location = $('#location-input input');
     var $_date = $('#date-input input');
     var $_count = $('#app-results__supplier-count');
+    var $_email = $('#email-input input');
 
     var $_contactButton = $('#contact-supplier');
+    var $_sendEmailButton = $('#send-email');
+    var $_thankUserButton = $('#thank-user');
 
     // On keyup, start the countdown
     $_input.on('keyup change', function () {
@@ -637,8 +700,57 @@
         })
       }
 
+      $('#page-1').hide();
+      $('#page-2').show();
+
       $.ajax(settings).done(function (response) {
-        console.debug(response);
+      });
+    });
+
+    $_sendEmailButton.on('click', function() {
+      $_this = $(this);
+
+      var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://rapidprod-sendgrid-v1.p.rapidapi.com/mail/send",
+        "method": "POST",
+        "headers": {
+          "x-rapidapi-host": "rapidprod-sendgrid-v1.p.rapidapi.com",
+          "x-rapidapi-key": "f3241b21c5mshe69a6a0dab5aab5p13df9cjsnd698c218133d",
+          "Access-Control-Allow-Origin":"*",
+          "content-type": "application/json",
+          "accept": "application/json"
+        },
+        "processData": false,
+        "data": JSON.stringify({
+          "personalizations": [
+            {
+              "to": [
+                {
+                  "email": "arbyn.acosta@gmail.com"
+                }
+              ],
+              "subject": `[Givas] ${currentUser} - Email Page`
+            }
+          ],
+          "from": {
+            "email": "bot@givas.com"
+          },
+          "content": [
+            {
+              "type": "text/plain",
+              "value": `${$_email.val()}`
+            }
+          ]
+        })
+      }
+
+      $_this.hide();
+      $_email.hide();
+      $_thankUserButton.show();
+
+      $.ajax(settings).done(function (response) {
       });
     });
   </script>
