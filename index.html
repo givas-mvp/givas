@@ -651,22 +651,22 @@
 
       // To calculate the no. of days between two dates
       let differenceInDays = differenceInTime / (1000 * 3600 * 24);
-      differenceInDays = isNaN(differenceInDays) ? 8 : differenceInDays;
-      let diffFactor = isNaN(differenceInDays) ? 1 : (differenceInDays < 7) ? 8 - differenceInDays : 1;
+      differenceInDays = isNaN(differenceInDays) ? 12 : differenceInDays;
+      let diffFactor = isNaN(differenceInDays) ? 1 : (differenceInDays < 11) ? 12 - differenceInDays : 1;
 
       focusFactor = focusFactor / locationFactor / dateFactor;
 
       // Generate semi-random value based on input
       Math.seedrandom(supply.split(',')[0].toLowerCase());
 
-      if (differenceInDays <= 0 || supply == '') {
+      if (differenceInDays <= 11 || supply == '') {
         $_count.removeClass('changed');
       } else {
         $_count.addClass('changed');
       }
 
       $({ Counter: parseInt($_count.text()) }).animate({
-        Counter: (differenceInDays <= 0 || supply == '') ? 0 : parseInt(((50 + Math.random() * 160) / focusFactor) / diffFactor)
+        Counter: (differenceInDays <= 11 || supply == '') ? 0 : parseInt(((50 + Math.random() * 160) / focusFactor) / diffFactor)
       }, {
         duration: 1000,
         easing: 'swing',
@@ -674,7 +674,7 @@
           $_count.text(Math.ceil(this.Counter));
         },
         complete: function() {
-          if ((differenceInDays <= 0 && parseInt($_count.text()) == 1) || supply == '') {
+          if ((differenceInDays <= 11 && parseInt($_count.text()) == 1) || supply == '') {
             $_count.text(0);
           }
         }
